@@ -1,2 +1,2 @@
 # FlutterProjects
-self-learn flutter 
+Learning Flutter from udemy
