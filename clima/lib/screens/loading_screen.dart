@@ -11,18 +11,24 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   double latitude;
   double longitude;
+  dynamic weatherData;
 
   void initState(){
     super.initState();
     getLocationData();
   }
-  void getLocationData() async{
-
-    var weatherData = WeatherModel.getLocationWeather();
-
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return LocationScreen(locationWeather: weatherData,);
-    }));
+  void getLocationData() {
+    weatherData = WeatherModel().getLocationWeather();
+    Future.delayed(
+      Duration(seconds: 1),(){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LocationScreen(locationWeather: weatherData,),
+          ),
+        );
+      }
+    );
   }
   @override
   Widget build(BuildContext context) {

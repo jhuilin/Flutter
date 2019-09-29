@@ -23,7 +23,7 @@ class _LocationScreenState extends State<LocationScreen> {
     updateUI(widget.locationWeather);
   }
   
-  void updateUI(dynamic weatherData){
+  updateUI(dynamic weatherData){
     setState(() {
       double temp  = weatherData['main']['temp'];
       tempeature = temp.toInt();
@@ -35,7 +35,6 @@ class _LocationScreenState extends State<LocationScreen> {
       cityName = weatherData['name'];
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +66,8 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                   FlatButton(
                     onPressed: () async{
-                      var weatherData = await WeatherModel.getLocationWeather();
-                      updateUI(weatherData);
+                      var data = await WeatherModel().getLocationWeather();
+                      updateUI(data);
                     },
                     child: Icon(
                       Icons.location_city,
