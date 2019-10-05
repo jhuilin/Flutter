@@ -9,16 +9,13 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  double latitude;
-  double longitude;
-  dynamic weatherData;
 
   void initState(){
     super.initState();
     getLocationData();
   }
-  void getLocationData() {
-    weatherData = WeatherModel().getLocationWeather();
+  void getLocationData() async{
+    var weatherData = await WeatherModel().getLocationWeather();
     Future.delayed(
       Duration(seconds: 1),(){
         Navigator.push(
